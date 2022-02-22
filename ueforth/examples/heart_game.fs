@@ -29,7 +29,7 @@ $3FF75144 constant RNG_DATA_REG
  
 \ get random number in interval [0..n-1]
 : random ( n -- 0..n-1 )
-    rnd um* nip
+    rnd swap mod
   ;
   
 \ 0 value seed
