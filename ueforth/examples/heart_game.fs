@@ -18,11 +18,25 @@ grf also structures
 640 480 window
 
 1 31 lshift 1- constant max-random
-0 value seed
-: random ( n -- )
-  seed max-random */
-  seed 7127 + 7919 * max-random mod to seed
-;
+
+\ Random number data with internal registers from ESP32
+$3FF75144 constant RNG_DATA_REG
+ 
+\ get 32 bits random b=number
+: rnd  ( -- x )
+    RNG_DATA_REG L@
+  ;
+ 
+\ get random number in interval [0..n-1]
+: random ( n -- 0..n-1 )
+    rnd um* nip
+  ;
+  
+\ 0 value seed
+\ : random ( n -- )
+\   seed max-random */
+\   seed 7127 + 7919 * max-random mod to seed
+\ ;
 
 10000 constant entity-limit
 struct EntityStruct
