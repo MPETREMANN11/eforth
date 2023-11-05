@@ -27,7 +27,6 @@
 
 static Adafruit_SSD1306 *oled_display = 0;
 
-#define OPTIONAL_OLED_VOCABULARY V(oled)
 #define OPTIONAL_OLED_SUPPORT \
   XV(internals, "oled-source", OLED_SOURCE, \
       PUSH oled_source; PUSH sizeof(oled_source) - 1) \
@@ -46,13 +45,17 @@ static Adafruit_SSD1306 *oled_display = 0;
   YV(oled, OledInvert, oled_display->invertDisplay(n0); DROP) \
   YV(oled, OledTextsize, oled_display->setTextSize(n0); DROP) \
   YV(oled, OledSetCursor, oled_display->setCursor(n1,n0); DROPn(2)) \
-  YV(oled, OledPixel, oled_display->drawPixel(n2, n1, n0); DROPn(2)) \
-  YV(oled, OledDrawL, oled_display->drawLine(n4, n3, n2, n1, n0); DROPn(4)) \
-  YV(oled, OledCirc, oled_display->drawCircle(n3,n2, n1, n0); DROPn(3)) \
-  YV(oled, OledCircF, oled_display->fillCircle(n3, n2, n1, n0); DROPn(3)) \
-  YV(oled, OledRect, oled_display->drawRect(n4, n3, n2, n1, n0); DROPn(4)) \
-  YV(oled, OledRectF, oled_display->fillRect(n4, n3, n2, n1, n0); DROPn(3)) \
-  YV(oled, OledRectR, oled_display->drawRoundRect(n5, n4, n3, n2, n1, n0); DROPn(5)) \
-  YV(oled, OledRectRF, oled_display->fillRoundRect(n5, n4, n3, n2, n1, n0 ); DROPn(5))
+  YV(oled, OledPixel, oled_display->drawPixel(n2, n1, n0); DROPn(3)) \
+  YV(oled, OledDrawL, oled_display->drawLine(n4, n3, n2, n1, n0); DROPn(5)) \
+  YV(oled, OledFastHLine, oled_display->drawFastHLine(n3, n2, n1, n0); DROPn(4)) \
+  YV(oled, OledFastVLine, oled_display->drawFastVLine(n3, n2, n1, n0); DROPn(4)) \
+  YV(oled, OledCirc, oled_display->drawCircle(n3,n2, n1, n0); DROPn(4)) \
+  YV(oled, OledCircF, oled_display->fillCircle(n3, n2, n1, n0); DROPn(4)) \
+  YV(oled, OledRect, oled_display->drawRect(n4, n3, n2, n1, n0); DROPn(5)) \
+  YV(oled, OledRectF, oled_display->fillRect(n4, n3, n2, n1, n0); DROPn(5)) \
+  YV(oled, OledRectR, oled_display->drawRoundRect(n5, n4, n3, n2, n1, n0); DROPn(6)) \
+  YV(oled, OledRectRF, oled_display->fillRoundRect(n5, n4, n3, n2, n1, n0 ); DROPn(6)) \
+  YV(oled, OledTriangle, oled_display->drawTriangle(n5, n4, n3, n2, n1, n0 ); DROPn(6)) \
+  YV(oled, OledTriangleF, oled_display->fillTriangle(n5, n4, n3, n2, n1, n0 ); DROPn(6))
 
 {{oled}}
